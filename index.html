@@ -280,7 +280,7 @@ mjx-container[display="true"] + br {
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2024-12-18 11:26:00 / Modified: 20:01:13" itemprop="dateCreated datePublished" datetime="2024-12-18T11:26:00+08:00">2024-12-18</time>
+      <time title="Created: 2024-12-18 11:26:00 / Modified: 20:11:57" itemprop="dateCreated datePublished" datetime="2024-12-18T11:26:00+08:00">2024-12-18</time>
     </span>
 
   
@@ -294,7 +294,19 @@ mjx-container[display="true"] + br {
     
     <div class="post-body" itemprop="articleBody">
           <h1 id="Train-your-Own-Detection-Model-YOLO"><a href="#Train-your-Own-Detection-Model-YOLO" class="headerlink" title="Train your Own Detection Model - YOLO"></a>Train your Own Detection Model - YOLO</h1><p>Continuing from the previous blog 1 that successfully detecting objects like cats and dogs but failing to detect Saber. This blog will apply Yolo v8 to train a model from data collection &amp; labeling, training &amp; validating and finally predicting the object result. <br></p>
-<p>[toc]</p>
+<ul>
+<li><a href="#train-your-own-detection-model---yolo">Train your Own Detection Model - YOLO</a><ul>
+<li><a href="#background-of-yolo">Background of Yolo</a></li>
+<li><a href="#training-the-model">Training the Model</a><ul>
+<li><a href="#environment">Environment</a></li>
+<li><a href="#dataset">Dataset</a></li>
+<li><a href="#training">Training</a></li>
+</ul>
+</li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="Background-of-Yolo"><a href="#Background-of-Yolo" class="headerlink" title="Background of Yolo"></a>Background of Yolo</h2><p><strong>YOLO: You Only Look Once</strong> <br><br>The YOLO model (<a target="_blank" rel="noopener" href="https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Redmon_You_Only_Look_CVPR_2016_paper.pdf">Redmon et al., 2016</a>) is the very first attempt at building a fast real-time object detector. The main feature of YOLO algorithm is that it treats the object detection problem as a regression problem, directly predicting multiple bounding boxes and category probabilities in the image through a single network forward propagation. </p>
 <p><strong>Basic Concept</strong> <br><br>YOLO abandons the sliding window and directly divides the original image into SS non overlapping small squares. Then, through convolution, the SS feature map is generated, where each element of the feature map corresponds to a small square in the original image. <br></p>
 <ol>
