@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fw.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="How do config R in Slurm How do config R in Slurm Conda environment Install jags Running R script using Shell in Slurm Others Reference    Conda environment Create environment 1conda create -n R4.4-sy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="slurm">
+<meta property="og:url" content="https://fw.github.io/2025/05/04/slurm/index.html">
+<meta property="og:site_name" content="🌙">
+<meta property="og:description" content="How do config R in Slurm How do config R in Slurm Conda environment Install jags Running R script using Shell in Slurm Others Reference    Conda environment Create environment 1conda create -n R4.4-sy">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-04T07:58:48.000Z">
+<meta property="article:modified_time" content="2025-05-04T09:08:03.478Z">
+<meta property="article:author" content="Nobody">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://fw.github.io/2025/05/04/slurm/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://fw.github.io/2025/05/04/slurm/","path":"2025/05/04/slurm/","title":"slurm"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>slurm | 🌙</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">🌙</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#How-do-config-R-in-Slurm"><span class="nav-number">1.</span> <span class="nav-text">How do config R in Slurm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Conda-environment"><span class="nav-number">1.1.</span> <span class="nav-text">Conda environment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Install-jags"><span class="nav-number">1.2.</span> <span class="nav-text">Install jags</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Running-R-script-using-Shell-in-Slurm"><span class="nav-number">1.3.</span> <span class="nav-text">Running R script using Shell in Slurm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Others"><span class="nav-number">1.4.</span> <span class="nav-text">Others</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">1.5.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Nobody</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://fw.github.io/2025/05/04/slurm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Nobody">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="🌙">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="slurm | 🌙">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          slurm
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-05-04 15:58:48 / Modified: 17:08:03" itemprop="dateCreated datePublished" datetime="2025-05-04T15:58:48+08:00">2025-05-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="How-do-config-R-in-Slurm"><a href="#How-do-config-R-in-Slurm" class="headerlink" title="How do config R in Slurm"></a>How do config R in Slurm</h2><ul>
+<li><a href="#how-do-config-r-in-slurm">How do config R in Slurm</a><ul>
+<li><a href="#conda-environment">Conda environment</a></li>
+<li><a href="#install-jags">Install jags</a></li>
+<li><a href="#running-r-script-using-shell-in-slurm">Running R script using Shell in Slurm</a></li>
+<li><a href="#others">Others</a></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Conda-environment"><a href="#Conda-environment" class="headerlink" title="Conda environment"></a>Conda environment</h3><ul>
+<li>Create environment <br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n R4.4-syf R=4.4.1 -y</span><br></pre></td></tr></table></figure>
+Create R environment using 4.4.1 version.</li>
+<li>Check current environments <br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="built_in">env</span> list</span><br></pre></td></tr></table></figure></li>
+<li>Activate &amp; Deactivate environment<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># activate</span></span><br><span class="line">conda activate env_name <span class="comment"># change to env_name created before</span></span><br><span class="line">conda activate R4.4-syf <span class="comment"># eg.</span></span><br><span class="line"><span class="comment"># deactivate</span></span><br><span class="line">conda deactivate R4.4-syf </span><br></pre></td></tr></table></figure></li>
+<li>Delete env<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove -n env_name --all -y</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Install-jags"><a href="#Install-jags" class="headerlink" title="Install jags"></a>Install jags</h3><ol>
+<li>Download and <em>Tar</em><br>Download package from <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/mcmc-jags/">here</a> <br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ./JAGS-4.3.2</span><br><span class="line">tar -zxf ./jags_4.3.2.orig.tar.gz</span><br><span class="line"><span class="built_in">cd</span> ./JAGS-4.3.2</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make check</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></li>
+<li>Conda install rjags<br>After tar JAGS, conda install rjags in command.<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -c conda forge r-rjags</span><br></pre></td></tr></table></figure></li>
+<li>Install package in R<br>Activate R environment using command in shell: <code>R</code><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;R2jags&quot;</span><span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>rjags<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>R2jags<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Running-R-script-using-Shell-in-Slurm"><a href="#Running-R-script-using-Shell-in-Slurm" class="headerlink" title="Running R script using Shell in Slurm"></a>Running R script using Shell in Slurm</h3><p>The test shell script: <code>submit_test.sh</code> <br><br>R script: <code>test_hpc_parallel.R</code> <br><br>To run the R script using conda environment, the shell script:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module purge</span><br><span class="line">module load anaconda3/2021.11</span><br><span class="line">conda activate /home/224030234/R/R4.4-syf</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /home/224030234/R</span><br><span class="line"><span class="comment">#run the application:</span></span><br><span class="line">Rscript test_hpc_parallel.R</span><br></pre></td></tr></table></figure><br>Following error will occur:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">CommandNotFoundError: Your shell has not been properly configured to use &#x27;conda activate&#x27;.</span><br><span class="line">To initialize your shell, run</span><br><span class="line"></span><br><span class="line">    $ conda init &lt;SHELL_NAME&gt;</span><br><span class="line"></span><br><span class="line">Currently supported shells are:</span><br><span class="line">   - bash</span><br><span class="line">   - fish</span><br><span class="line">   - tcsh</span><br><span class="line">   - xonsh</span><br><span class="line">   - zsh</span><br><span class="line">   - powershell</span><br><span class="line"></span><br><span class="line">See &#x27;conda init --help&#x27; for more information and options.</span><br><span class="line"></span><br><span class="line">IMPORTANT: You may need to close and restart your shell after running &#x27;conda init&#x27;.</span><br></pre></td></tr></table></figure><br>To solve this, <code>source conda.sh</code> before activate, and use the full path for the R scipt. <br><br>The revised shell script:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module purge</span><br><span class="line">module load anaconda3/2021.11</span><br><span class="line"><span class="built_in">source</span> ~/anaconda3/etc/profile.d/conda.sh</span><br><span class="line">conda activate /home/224030234/R/R4.4-syf</span><br><span class="line"></span><br><span class="line"><span class="comment">#run the application:</span></span><br><span class="line">Rscript /home/224030234/R/test_hpc_parallel.R</span><br></pre></td></tr></table></figure></p>
+<h3 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h3><ol>
+<li><p>conda install freezing<br>When install r-<em>pkg</em>, <code>solving environment</code> freezing often occurs, to solve this, replace <code>conda</code> install with <code>mamba</code>.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/mamba-org/mamba"><em>What is mamba</em></a></p>
+</li>
+<li>conda channels operations<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda config --show channels <span class="comment"># show current channels</span></span><br><span class="line">conda config --remove channels defaults <span class="comment"># remove defaults channel</span></span><br></pre></td></tr></table></figure>
+To add new channels:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim ./condarc</span><br><span class="line"><span class="comment"># add in condarc via vim</span></span><br><span class="line">conda config --show channels <span class="comment"># check channels added status</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_54709098/article/details/139472579">infercnv安装全流程（包含jags等所有踩坑指南）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/niuhulu-rui/p/18154422">conda常用命令</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/422365954">shell脚本激活conda虚拟环境</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liujiaxin2018/p/16712912.html">conda中如何移除默认源</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/04/17/AR1/" rel="prev" title="AR1">
+                  <i class="fa fa-angle-left"></i> AR1
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Nobody</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
