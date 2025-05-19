@@ -19,15 +19,19 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"fw.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="article">
+    <meta name="description" content="Time Series analysis: AR(1) process Time Series analysis: AR(1) process 自回归过程 一阶自回归过程AR(1) 模拟过程    自回归过程考虑$x_t$是由$x_{t-1}$决定，即$x_t &#x3D; a_1x_{t-1}$。假设$$x_t &#x3D; \rho x_{t-1} + \epsilon_t$$其中，随机干扰">
+<meta property="og:type" content="article">
 <meta property="og:title" content="AR1">
 <meta property="og:url" content="https://fw.github.io/2025/04/17/AR1/index.html">
 <meta property="og:site_name" content="🌙">
+<meta property="og:description" content="Time Series analysis: AR(1) process Time Series analysis: AR(1) process 自回归过程 一阶自回归过程AR(1) 模拟过程    自回归过程考虑$x_t$是由$x_{t-1}$决定，即$x_t &#x3D; a_1x_{t-1}$。假设$$x_t &#x3D; \rho x_{t-1} + \epsilon_t$$其中，随机干扰">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://fw.github.io/.io//plot.png">
 <meta property="article:published_time" content="2025-04-17T05:09:18.000Z">
-<meta property="article:modified_time" content="2025-04-17T05:09:18.175Z">
+<meta property="article:modified_time" content="2025-05-19T10:58:46.921Z">
 <meta property="article:author" content="Nobody">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fw.github.io/.io//plot.png">
 
 
 <link rel="canonical" href="https://fw.github.io/2025/04/17/AR1/">
@@ -88,7 +92,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -101,6 +105,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Time-Series-analysis-AR-1-process"><span class="nav-number">1.</span> <span class="nav-text">Time Series analysis: AR(1) process</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%9B%9E%E5%BD%92%E8%BF%87%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">自回归过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E9%98%B6%E8%87%AA%E5%9B%9E%E5%BD%92%E8%BF%87%E7%A8%8BAR-1"><span class="nav-number">1.2.</span> <span class="nav-text">一阶自回归过程AR(1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F%E8%BF%87%E7%A8%8B"><span class="nav-number">1.3.</span> <span class="nav-text">模拟过程</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -172,6 +177,13 @@
 
       <time title="Created: 2025-04-17 13:09:18" itemprop="dateCreated datePublished" datetime="2025-04-17T13:09:18+08:00">2025-04-17</time>
     </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-05-19 18:58:46" itemprop="dateModified" datetime="2025-05-19T18:58:46+08:00">2025-05-19</time>
+    </span>
 
   
 </div>
@@ -182,7 +194,21 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body" itemprop="articleBody"><!--需要复习协方差，自相关，复变量（虽然现在也不懂 -->
+<h1 id="Time-Series-analysis-AR-1-process"><a href="#Time-Series-analysis-AR-1-process" class="headerlink" title="Time Series analysis: AR(1) process"></a>Time Series analysis: AR(1) process</h1><ul>
+<li><a href="#time-series-analysis-ar1-process">Time Series analysis: AR(1) process</a><ul>
+<li><a href="#%E8%87%AA%E5%9B%9E%E5%BD%92%E8%BF%87%E7%A8%8B">自回归过程</a></li>
+<li><a href="#%E4%B8%80%E9%98%B6%E8%87%AA%E5%9B%9E%E5%BD%92%E8%BF%87%E7%A8%8Bar1">一阶自回归过程AR(1)</a></li>
+<li><a href="#%E6%A8%A1%E6%8B%9F%E8%BF%87%E7%A8%8B">模拟过程</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="自回归过程"><a href="#自回归过程" class="headerlink" title="自回归过程"></a>自回归过程</h2><p>考虑$x_t$是由$x_{t-1}$决定，即$x_t &#x3D; a_1x_{t-1}$。假设<br>$$x_t &#x3D; \rho x_{t-1} + \epsilon_t$$<br>其中，随机干扰项$\epsilon_t \sim N(0, \sigma^2)$。<br>序列的<strong>稳定性</strong>由决定$\rho$，<strong>波动程度</strong>由$\sigma^2$决定。<br><br><br>一般地，考虑序列值$x_t$可由前p个时刻的序列值表示，即<br>$$X_t &#x3D; \rho_1 X_{t-1} + \rho_2 X_{t-2} + \rho_k X_{t-k} + \epsilon_t$$<br>其中，$\epsilon_t \sim N(0, \sigma^2)$；是一个p阶自回归模型AR(P)，$\rho &#x3D; (\rho_0, \rho_1,…, \rho_p)^T$ 是自回归系数。</p>
+<h2 id="一阶自回归过程AR-1"><a href="#一阶自回归过程AR-1" class="headerlink" title="一阶自回归过程AR(1)"></a>一阶自回归过程AR(1)</h2><p>一阶自回归表达式：<br>$$X_t &#x3D; \rho X_{t-1} + \epsilon_t (1)$$<br>其中，$\epsilon_t \sim N(0, \sigma^2)$。<br>求方差得：<br>$$\gamma_0 &#x3D; \rho^2\gamma_0 + \sigma_e^2$$<br>$$\gamma_0 &#x3D; \dfrac{\sigma_e^2}{1-\rho^2}$$<br>根据上得出：$\rho^2\leq 1$即$|\rho|\leq 1$。<br>对(1)两边同时乘以$X_{t-k}$，并求期望得：<br>$$E(X_{t-k}X_t) &#x3D; \rho E(X_{t-k}X_{t-1}) + E(\epsilon_t X_{t-k})$$<br>即：<br>$$\gamma_k &#x3D; \rho \gamma_{k-1} + E(\epsilon_t X_{t-k})$$<br>根据$\epsilon_t$独立于$X_{t-k}$，且$X_t$均值为0，所以$E(\epsilon_t X_{t-k}) &#x3D; 0$，即：<br>$$\gamma_k &#x3D; \rho \gamma_{k-1}, k &#x3D; 1, 2, 3, …$$<br>将k带入求得$\gamma_k$：<br>$$\gamma_1 &#x3D; \rho \gamma_0 &#x3D; \rho \dfrac{\sigma_e^2}{1-\rho^2}$$<br>$$\gamma_2 &#x3D; \rho \gamma_1 &#x3D; \rho^2 \dfrac{\sigma_e^2}{1-\rho^2}$$<br>$$…$$<br>$$\gamma_k &#x3D; \rho \gamma_{k-1} &#x3D; \rho^{k} \dfrac{\sigma_e^2}{1-\rho^2}$$<br>即：<br>$$\rho^k &#x3D; \dfrac{\gamma_k}{\gamma_0}$$<br>自相关系数只与间隔(k)有关，因此是平稳(stationary)的。</p>
+<h2 id="模拟过程"><a href="#模拟过程" class="headerlink" title="模拟过程"></a>模拟过程</h2><p>对于不同$\rho$，模拟过程并绘制自相关图(序列 自相关函数$\rho_k$)：<br><img src="/.io//plot.png" alt="AR(1)模拟"><br>代码：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">set.seed<span class="punctuation">(</span><span class="number">123</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">simulate_AR1 <span class="operator">&lt;-</span> <span class="keyword">function</span><span class="punctuation">(</span>rho<span class="punctuation">,</span> sigma <span class="operator">=</span> <span class="number">1</span><span class="punctuation">,</span> <span class="built_in">T</span> <span class="operator">=</span> <span class="number">100</span><span class="punctuation">)</span> <span class="punctuation">&#123;</span></span><br><span class="line">  y <span class="operator">&lt;-</span> numeric<span class="punctuation">(</span><span class="built_in">T</span><span class="punctuation">)</span></span><br><span class="line">  y<span class="punctuation">[</span><span class="number">1</span><span class="punctuation">]</span> <span class="operator">&lt;-</span> rnorm<span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span> <span class="number">0</span><span class="punctuation">,</span> sigma <span class="operator">/</span> <span class="built_in">sqrt</span><span class="punctuation">(</span><span class="number">1</span> <span class="operator">-</span> rho<span class="operator">^</span><span class="number">2</span><span class="punctuation">)</span><span class="punctuation">)</span>  <span class="comment"># stationarity</span></span><br><span class="line">  <span class="keyword">for</span> <span class="punctuation">(</span>t <span class="keyword">in</span> <span class="number">2</span><span class="operator">:</span><span class="built_in">T</span><span class="punctuation">)</span> <span class="punctuation">&#123;</span></span><br><span class="line">    y<span class="punctuation">[</span>t<span class="punctuation">]</span> <span class="operator">&lt;-</span> rho <span class="operator">*</span> y<span class="punctuation">[</span>t<span class="operator">-</span><span class="number">1</span><span class="punctuation">]</span> <span class="operator">+</span> rnorm<span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span> <span class="number">0</span><span class="punctuation">,</span> sigma<span class="punctuation">)</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="built_in">return</span><span class="punctuation">(</span>y<span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line">rhos <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">0</span><span class="punctuation">,</span> <span class="number">0.3</span><span class="punctuation">,</span> <span class="number">0.7</span><span class="punctuation">,</span> <span class="number">0.95</span><span class="punctuation">)</span></span><br><span class="line">par<span class="punctuation">(</span>mfrow <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">4</span><span class="punctuation">,</span> <span class="number">2</span><span class="punctuation">)</span><span class="punctuation">,</span> mar <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">4</span><span class="punctuation">,</span> <span class="number">4</span><span class="punctuation">,</span> <span class="number">2</span><span class="punctuation">,</span> <span class="number">1</span><span class="punctuation">)</span><span class="punctuation">,</span> cex.main <span class="operator">=</span> <span class="number">1.5</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="punctuation">(</span>rho <span class="keyword">in</span> rhos<span class="punctuation">)</span> <span class="punctuation">&#123;</span></span><br><span class="line">  y <span class="operator">&lt;-</span> simulate_AR1<span class="punctuation">(</span>rho<span class="punctuation">)</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 时间序列图</span></span><br><span class="line">  plot<span class="punctuation">(</span>y<span class="punctuation">,</span> type <span class="operator">=</span> <span class="string">&quot;l&quot;</span><span class="punctuation">,</span> main <span class="operator">=</span> paste<span class="punctuation">(</span><span class="string">&quot;AR(1) with rho =&quot;</span><span class="punctuation">,</span> rho<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">       ylab <span class="operator">=</span> <span class="string">&quot;y&quot;</span><span class="punctuation">,</span> xlab <span class="operator">=</span> <span class="string">&quot;Time&quot;</span><span class="punctuation">)</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 自相关图</span></span><br><span class="line">  acf<span class="punctuation">(</span>y<span class="punctuation">,</span> main <span class="operator">=</span> paste<span class="punctuation">(</span><span class="string">&quot;ACF: rho =&quot;</span><span class="punctuation">,</span> rho<span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>根据上图，自相关系数越小，ACF衰减越快，相反，ACF衰减越慢。</p>
+
     </div>
 
     
