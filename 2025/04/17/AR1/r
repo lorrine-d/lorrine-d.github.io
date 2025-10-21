@@ -1,0 +1,24 @@
+set.seed(123)
+
+simulate_AR1 <- function(rho, sigma = 1, T = 100) {
+  y <- numeric(T)
+  y[1] <- rnorm(1, 0, sigma / sqrt(1 - rho^2))  # stationarity
+  for (t in 2:T) {
+    y[t] <- rho * y[t-1] + rnorm(1, 0, sigma)
+  }
+  return(y)
+}
+
+rhos <- c(0, 0.3, 0.7, 0.95)
+par(mfrow = c(4, 2), mar = c(4, 4, 2, 1), cex.main = 1.5)
+
+for (rho in rhos) {
+  y <- simulate_AR1(rho)
+  
+  # 时间序列图
+  plot(y, type = "l", main = paste("AR(1) with rho =", rho),
+       ylab = "y", xlab = "Time")
+  
+  # 自相关图
+  acf(y, main = paste("ACF: rho =", rho))
+}
